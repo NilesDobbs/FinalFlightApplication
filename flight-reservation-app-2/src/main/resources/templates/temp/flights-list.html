@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+
+  <!--/*/ <th:block th:include="fragments/head-include :: head"></th:block> /*/-->
+  <title>List of all Users</title>
+</head>
+<body>
+<div class="container">
+  <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+  <h2>List of Flights</h2>
+  <hr/>
+  <p th:if="${message}" class="text-success" th:text="${message}">ADFADSFADSF!</p>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">Airline</th>
+      <th scope="col">Departure</th>
+      <th scope="col">Date Of Departure</th>
+      <th scope="col">Time Of Departure</th>
+      <th scope="col">Arrival</th>
+      <th scope="col">Date Of Arrival</th>
+      <th scope="col">Time Of Arrival</th>
+      <th scope="col">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="fli: ${flights}">
+      <td th:text="${fli.operatingAirlines}"></td>
+      <td th:text="${fli.iataDeparture}"></td>
+      <td th:text="${fli.dateOfDeparture}"></td>
+      <td th:text="${fli.departureTime}"></td>
+
+      <td th:text="${fli.iataArrival}"></td>
+      <td th:text="${fli.dateOfArrival}"></td>
+      <td th:text="${fli.arrivalTime}"></td>
+      <td><a class="btn btn-primary mb-2" th:href="@{/flight/book/__${fli.flightId}__}"
+             role="button">Book</a></td>
+
+    </tr>
+    </tbody>
+  </table>
+  <hr/>
+  <a class="btn btn-link mb-2" th:href="@{/index}" role="button">Back to Index</a>
+</div>
+</body>
+</html>

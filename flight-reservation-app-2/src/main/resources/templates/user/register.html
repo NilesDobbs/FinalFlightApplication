@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="hhtp://thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+
+	<title>Title</title>
+	<!--/*/ <th:block th:include="fragments/head-include :: head"></th:block> /*/-->
+</head>
+<body>
+<!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+<div class="d-flex justify-content-center">
+	<h2>Register</h2>
+</div>
+
+<hr/>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-6 mb-2">
+			<img class="img-fluid d-none d-sm-block image-aircraft"
+				 src="../static/images/register.svg"
+				 th:src="@{images/register.svg}"
+				 alt="Welcome">
+		</div>
+		<div class="col-md-6">
+
+			<p th:if="${errorMessage}" th:text="${errorMessage}" class="text-danger">asdfasdf</p>
+			<form th:action="@{/register}" th:object="${user}" method="post">
+
+				<input
+						th:replace="~{fragments/inputField :: input ('First Name', 'firstName', 'text')}" />
+
+				<input
+						th:replace="~{fragments/inputField :: input ('Last Name', 'lastName', 'text')}" />
+
+				<input
+						th:replace="~{fragments/inputField :: input ('Email address', 'email', 'text')}" />
+
+				<input
+						th:replace="~{fragments/inputField :: input ('Username', 'username', 'text')}" />
+
+				<input
+						th:replace="~{fragments/inputField :: input ('Password', 'newPassword', 'password')}" />
+
+				<input
+						th:replace="~{fragments/inputField :: input ('Retype Password', 'retypeNewPassword', 'password')}" />
+
+				<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+
+				<button type="submit" class="btn btn-primary">Register</button>
+
+			</form>
+
+		</div>
+	</div>
+</div>
+
+
+</div>
+</body>
+</html>

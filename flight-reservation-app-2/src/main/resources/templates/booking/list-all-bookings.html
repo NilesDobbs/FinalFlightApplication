@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="hhtp://thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+
+
+	<title>List of all Users</title>
+	<!--/*/ <th:block th:include="fragments/head-include :: head"></th:block> /*/-->
+</head>
+<body>
+<!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+
+
+<div class="d-flex justify-content-center">
+	<h2>List of Bookings</h2>
+</div>
+<hr/>
+<div th:if="${message}" class="d-flex justify-content-center">
+	<p class="text-success" th:text="${message}">ADFADSFADSF!</p>
+</div>
+<div th:if="${errorMessage}" class="d-flex justify-content-center">
+	<p th:text="${errorMessage}" class="text-danger">asdfasdf</p>
+</div>
+<div class="container-fluid">
+	<table class="table table-striped">
+		<thead>
+		<tr>
+			<th scope="col">First Name</th>
+			<th scope="col">Last Name</th>
+			<th scope="col">E-mail</th>
+			<th scope="col">Flight #</th>
+			<th scope="col">Airline’s name</th>
+			<th scope="col">Departure Airport</th>
+			<th scope="col">Arrival Airport</th>
+			<th scope="col">Date of Flight</th>
+			<th scope="col">Time of Flight</th>
+			<th scope="col">Action</th>
+
+		</tr>
+		</thead>
+		<tbody>
+		<tr th:each="booking: ${bookings.page}">
+
+			<td th:text="${booking.user.firstName}"></td>
+			<td th:text="${booking.user.lastName}"></td>
+			<td th:text="${booking.user.email}"></td>
+
+			<td th:text="${booking.flightD.flightNumberInfo}"></td>
+			<td th:text="${booking.flightD.operatingAirlines}"></td>
+			<td th:text="${booking.flightD.departureAirport}"></td>
+			<td th:text="${booking.flightD.arrivalAirport}"></td>
+
+			<td th:text="${booking.flightD.dateOfDeparture}"></td>
+			<td th:text="${booking.flightD.departureTime}"></td>
+
+			<td><a class="btn btn-primary mb-2"
+				   th:href="@{/flight/book/delete/__${booking.id}__}"
+				   role="button">Delete</a></td>
+
+		</tr>
+		</tbody>
+	</table>
+
+	<nav th:replace="~{fragments/paging :: paging (bookings, 'booking/all/list')}"/>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="hhtp://thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+
+
+    <title>List of all Users</title>
+  <!--/*/ <th:block th:include="fragments/head-include :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+  <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <h2>List of all Users</h2>
+    <hr/>
+    <a class="btn btn-primary mb-2" th:href="@{/add}" role="button">Add User</a>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name </th>
+        <th scope="col">Username</th>
+        <th scope="col">Email</th>
+        <th scope="col">Authorities</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="user: ${users.page}">
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.firstName}"></td>
+        <td th:text="${user.lastName}"></td>
+        <td th:text="${user.username}"></td>
+        <td th:text="${user.email}"></td>
+        <td th:text="${user.auths}"></td>
+
+      </tr>
+      </tbody>
+    </table>
+
+  <nav th:replace="~{fragments/paging :: paging (users, 'list')}"/>
+
+</div>
+</body>
+</html>

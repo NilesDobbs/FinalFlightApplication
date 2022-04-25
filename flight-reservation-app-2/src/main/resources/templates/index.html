@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+
+  <title>Index Page</title>
+  <!--/*/ <th:block th:include="fragments/head-include :: head"></th:block> /*/-->
+</head>
+<body>
+
+  <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+
+  <div th:if="${errorMessage}" class="d-flex justify-content-center">
+    <p th:text="${errorMessage}" class="text-danger">asdfasdf</p>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 mb-2">
+        <img class="img-fluid d-none d-sm-block"
+             src="../static/images/world.svg"
+             th:src = "@{images/world.svg}"
+             alt="World">
+      </div>
+      <div class="col-md-6">
+        <img class="img-fluid d-none d-sm-block"
+             src="../static/images/aircraft.svg"
+             th:src = "@{images/aircraft.svg}"
+             alt="AirCraft">
+      </div>
+    </div>
+  </div>
+
+
+</body>
+</html>

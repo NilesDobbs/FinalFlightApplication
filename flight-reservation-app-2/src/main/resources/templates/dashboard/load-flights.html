@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+	<!--/*/ <th:block th:include="fragments/head-include :: head"></th:block> /*/-->
+	<title>Add New User</title>
+</head>
+<body>
+<!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+
+<div class="d-flex justify-content-center">
+	<h2>Confirm Booking</h2>
+</div>
+<hr/>
+<div class="container">
+	<div class="row">
+		<!--/*/ <th:block th:include="fragments/side-menu :: side-menu"></th:block> /*/-->
+
+		<div class="container col-10">
+			<div th:if="${message}" class="d-flex justify-content-center">
+				<p class="text-success" th:text="${message}">ADFADSFADSF!</p>
+			</div>
+
+			<div
+					th:replace="~{fragments/confirm :: confirm ('Import all flights?', '/flights/load')}"/>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

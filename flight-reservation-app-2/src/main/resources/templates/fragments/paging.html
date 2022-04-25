@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head lang="en" >
+
+</head>
+<body>
+<th:block th:fragment="paging (pages, action)">
+
+  <nav aria-label="Page navigation" class="paging">
+
+    <ul class="pagination" th:if="${__${pages}__.page.totalPages > 1}">
+      <li class="page-item" th:classappend="${!__${pages}__.paging.isPrevEnabled()? 'disabled' : ''}">
+        <a class="page-link" th:href="@{'/__${action}__?pageNumber=' + ${__${pages}__.paging.pageNumber - 1}}"
+           tabindex="-1" methods="post">Previous</a>
+      </li>
+      <th:block th:each="item : ${__${pages}__.paging.getItems()}">
+        <li class="page-item" th:classappend="${item.index == __${pages}__.paging.pageNumber? 'active' : ''}"
+            th:if="${item.pageItemType.name() == 'PAGE'}">
+          <a class="page-link" th:href="@{'/__${action}__?pageNumber=' + ${item.index}}" methods="post"
+             th:text="${item.index}"></a>
+        </li>
+        <li class="page-item disabled" th:if="${item.pageItemType.name() == 'DOTS'}">
+          <a class="page-link" href="#">...</a>
+        </li>
+      </th:block>
+      <li class="page-item" th:classappend="${!__${pages}__.paging.isNextEnabled()? 'disabled' : ''}">
+        <a class="page-link" th:href="@{'/__${action}__?pageNumber=' + ${__${pages}__.paging.pageNumber + 1}}" methods="post">Next</a>
+      </li>
+    </ul>
+  </nav>
+</th:block>
+</body>
+</html>

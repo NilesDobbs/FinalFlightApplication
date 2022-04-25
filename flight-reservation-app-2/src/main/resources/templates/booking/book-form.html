@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+
+  <!--/*/ <th:block th:include="fragments/head-include :: head"></th:block> /*/-->
+  <title>Add New User</title>
+</head>
+<body>
+<!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+<div class="container">
+  <div class="row">
+    <h2 class="col-9">Confirm Booking</h2>
+    <a sec:authorize="hasAuthority('ADMIN')"
+       class="btn btn-primary col-3" th:href="@{/flight/book/user/__${fli.flightId}__}">Book For User</a>
+  </div>
+
+
+  <hr/>
+    <form th:action="@{/flight/book/add/__${fli.flightId}__}" th:object="${fli}" method="post">
+      <input th:replace="~{fragments/inputField :: input ('Airline', 'operatingAirlines', 'text-readonly')}"/>
+      <input th:replace="~{fragments/inputField :: input ('Departure', 'departureAirport', 'text-readonly')}"/>
+      <input th:replace="~{fragments/inputField :: input ('Date Of Departure', 'dateOfDeparture', 'text-readonly')}"/>
+      <input th:replace="~{fragments/inputField :: input ('Time Of Departure', 'departureTime', 'text-readonly')}"/>
+      <input th:replace="~{fragments/inputField :: input ('Arrival', 'arrivalAirport', 'text-readonly')}"/>
+      <input th:replace="~{fragments/inputField :: input ('Date Of Arrival', 'dateOfArrival', 'text-readonly')}"/>
+      <input th:replace="~{fragments/inputField :: input ('Time Of Arrival', 'arrivalTime', 'text-readonly')}"/>
+
+
+      <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+      <button type="submit" class="btn btn-primary">Confirm</button>
+    </form>
+
+
+</div>
+</body>
+</html>

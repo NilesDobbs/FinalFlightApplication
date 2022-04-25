@@ -1,0 +1,41 @@
+body {
+    padding-top: 70px;
+}
+#topNavBar {
+	background-color: #10004F;
+	color: #e3f2fd;
+}
+#topNavBar div a {
+	color: #e3f2fd;
+}
+
+#topNavBar .navbar-brand {
+	color: #e3f2fd !important;
+}
+
+#topNavBar .nav-link {
+	color: #e3f2fd !important;
+}
+
+.calendar-event {
+    font-size: 22px;
+}
+
+.btn-primary {
+	background-color: #10004F;
+	border-color: #10004F;
+    color: #e3f2fd;
+}
+
+.btn-primary {
+	background-color: #10004F;
+	border-color: #10004F;
+    color: #e3f2fd;
+}
+
+.btn-primary:hover {
+    color: #e3f2fd;
+    background-color: #1A0082;
+    border-color: #1A0082;
+}
+

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="hhtp://thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+
+
+  <title>List of all Users</title>
+  <!--/*/ <th:block th:include="fragments/head-include :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+  <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+
+  <div class="d-flex justify-content-center">
+    <h2>Select User For Booking</h2>
+  </div>
+  <hr/>
+
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      <form th:action="@{/flight/book/user/__${flightId}__}" th:object="${search}" method="post"
+            class="d-flex justify-content-center">
+        <div class=" align-items-center mx-2">
+          <div class="input-group">
+            <label for="InputFrom" class="col-form-label mx-1">Search</label>
+            <input id="InputFrom" class="form-control mx-1" th:field="*{search}" type="text"
+                   placeholder="Type Name or Surname" aria-label="Search" style="width:400px;">
+          </div>
+        </div>
+
+        <button class="btn btn-outline-success ms-4" type="submit">Search</button>
+      </form>
+
+    </div>
+  </nav>
+  <div th:if="${errorMessage}" class="d-flex justify-content-center">
+    <small class="text-danger d-block mt-2" th:text="${errorMessage}">ddd</small>
+  </div>
+
+  <hr/>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name </th>
+      <th scope="col">Username</th>
+      <th scope="col">Email</th>
+      <th scope="col">Authorities</th>
+      <th scope="col">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user: ${users.page}">
+      <td th:text="${user.id}"></td>
+      <td th:text="${user.firstName}"></td>
+      <td th:text="${user.lastName}"></td>
+      <td th:text="${user.username}"></td>
+      <td th:text="${user.email}"></td>
+      <td th:text="${user.auths}"></td>
+      <td>
+      <a sec:authorize="hasAuthority('ADMIN')"
+         class="btn btn-primary " th:href="@{/flight/book/user/__${flightId}__/__${user.id}__}">Select</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <nav th:replace="~{fragments/paging :: paging (users, 'flight/book/user/__${flightId}__')}"/>
+
+</div>
+</body>
+</html>

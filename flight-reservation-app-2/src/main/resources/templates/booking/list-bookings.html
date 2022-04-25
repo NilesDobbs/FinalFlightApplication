@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="hhtp://thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+
+
+	<title>List of all Users</title>
+	<!--/*/ <th:block th:include="fragments/head-include :: head"></th:block> /*/-->
+</head>
+<body>
+<!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+
+
+<div class="d-flex justify-content-center">
+	<h2>List of Bookings</h2>
+</div>
+<hr/>
+
+<div class="container">
+	<div class="row">
+		<!--/*/ <th:block th:include="fragments/side-menu :: side-menu"></th:block> /*/-->
+
+
+		<div class="container col-10">
+
+
+			<table class="table table-striped">
+				<thead>
+				<tr>
+					<th scope="col">Flight #</th>
+					<th scope="col">Airline’s name</th>
+					<th scope="col">Departure Airport</th>
+					<th scope="col">Arrival Airport</th>
+					<th scope="col">Date of Flight</th>
+					<th scope="col">Time of Flight</th>
+
+				</tr>
+				</thead>
+				<tbody>
+				<tr th:each="booking: ${bookings.page}">
+
+					<td th:text="${booking.flightD.flightNumberInfo}"></td>
+					<td th:text="${booking.flightD.operatingAirlines}"></td>
+					<td th:text="${booking.flightD.departureAirport}"></td>
+					<td th:text="${booking.flightD.arrivalAirport}"></td>
+
+					<td th:text="${booking.flightD.dateOfDeparture}"></td>
+					<td th:text="${booking.flightD.departureTime}"></td>
+
+				</tr>
+				</tbody>
+			</table>
+
+			<nav th:replace="~{fragments/paging :: paging (bookings, 'booking/list')}"/>
+
+		</div>
+	</div>
+</div>
+</body>
+</html>

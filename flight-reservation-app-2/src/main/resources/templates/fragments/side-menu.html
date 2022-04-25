@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head lang="en" >
+
+</head>
+<body>
+
+<div th:fragment="side-menu">
+  <div class="container col-2 fixed-left">
+    <a sec:authorize="isAuthenticated()" style="width: 150px;"
+       class="btn btn-primary mb-2" href="#" th:href="@{/profile}">Profile</a>
+    <a sec:authorize="isAuthenticated()" style="width: 150px;"
+       class="btn btn-primary mb-2" href="#" th:href="@{/booking/list}">My Bookings</a>
+
+    <a sec:authorize="hasAuthority('USER')" style="width: 150px;"
+       class="btn btn-primary mb-2" href="#" th:href="@{/delete}">Delete Account</a>
+
+    <a sec:authorize="hasAuthority('ADMIN') or hasAuthority('MANAGER')" style="width: 150px;"
+       class="btn btn-primary mb-2" th:href="@{/flights/load}" role="button">Load All Flights</a>
+
+  </div>
+</div>
+</body>
+</html>

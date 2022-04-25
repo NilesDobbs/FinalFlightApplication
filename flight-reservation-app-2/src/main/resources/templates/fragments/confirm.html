@@ -1,0 +1,40 @@
+<html>
+<body>
+<form>
+  <th:block th:fragment="confirm (confirmMessage, action)">
+
+
+    <form th:action="@{__${action}__}" th:object="${user}" method="post">
+      <div class="d-flex justify-content-center">
+        <p th:text="${confirmMessage}">asfds</p>
+      </div>
+
+      <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+      <div class="d-flex justify-content-center">
+        <button type="submit" class="btn btn-primary">Confirm</button>
+      </div>
+
+    </form>
+  </th:block>
+
+  <th:block th:fragment="confirm-with-password (confirmMessage, action)">
+
+
+    <form th:action="@{__${action}__}" th:object="${user}" method="post">
+      <div class="d-flex justify-content-center">
+        <p th:text="${confirmMessage}">asfds</p>
+      </div>
+
+      <input
+              th:replace="~{fragments/inputField :: input ('Password', 'oldPassword', 'password')}"/>
+
+      <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+      <div class="d-flex justify-content-center">
+        <button type="submit" class="btn btn-primary">Confirm</button>
+      </div>
+
+    </form>
+  </th:block>
+</form>
+</body>
+</html>

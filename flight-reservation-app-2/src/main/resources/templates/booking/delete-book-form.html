@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+
+  <!--/*/ <th:block th:include="fragments/head-include :: head"></th:block> /*/-->
+  <title>Add New User</title>
+</head>
+<body>
+<!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+<div class="container">
+  <div class="row">
+    <h2 class="col-9">Confirm Booking</h2>
+
+  </div>
+
+  <hr/>
+  <form th:action="@{/flight/book/delete/__${booking.id}__}"  method="post">
+    <input th:replace="~{fragments/inputField :: input ('First Name', 'booking.user.firstName', 'text-readonly')}"/>
+    <input th:replace="~{fragments/inputField :: input ('Last Name', 'booking.user.lastName', 'text-readonly')}"/>
+    <input th:replace="~{fragments/inputField :: input ('E-Mail', 'booking.user.email', 'text-readonly')}"/>
+    <input th:replace="~{fragments/inputField :: input ('Username', 'booking.user.username', 'text-readonly')}"/>
+
+    <input th:replace="~{fragments/inputField :: input ('Airline', 'booking.flightD.operatingAirlines', 'text-readonly')}"/>
+    <input th:replace="~{fragments/inputField :: input ('Departure', 'booking.flightD.departureAirport', 'text-readonly')}"/>
+    <input th:replace="~{fragments/inputField :: input ('Date Of Departure', 'booking.flightD.dateOfDeparture', 'text-readonly')}"/>
+    <input th:replace="~{fragments/inputField :: input ('Time Of Departure', 'booking.flightD.departureTime', 'text-readonly')}"/>
+    <input th:replace="~{fragments/inputField :: input ('Arrival', 'booking.flightD.arrivalAirport', 'text-readonly')}"/>
+    <input th:replace="~{fragments/inputField :: input ('Date Of Arrival', 'booking.flightD.dateOfArrival', 'text-readonly')}"/>
+    <input th:replace="~{fragments/inputField :: input ('Time Of Arrival', 'booking.flightD.arrivalTime', 'text-readonly')}"/>
+
+
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+    <button type="submit" class="btn btn-primary">Confirm</button>
+  </form>
+
+
+</div>
+</body>
+</html>

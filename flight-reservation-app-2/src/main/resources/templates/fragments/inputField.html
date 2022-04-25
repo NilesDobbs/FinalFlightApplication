@@ -1,0 +1,19 @@
+<html>
+<body>
+  <form>
+    <th:block th:fragment="input (label, name, type)">
+        <div class="mb-3">
+            <label class="form-label" th:text="${label}">Label</label>
+            <div th:switch="${type}">
+                <input th:case="'text'" class="form-control" type="text" th:field="*{__${name}__}" />
+                <input th:case="'text-readonly'" class="form-control" type="text" th:field="*{__${name}__}" readonly />
+                <input th:case="'password'" class="form-control" type="password" th:field="*{__${name}__}"/>
+            </div>
+            <small class="text-danger d-block mt-2"
+                   th:if="${#fields.hasErrors(name)}"
+                   th:errors="*{__${name}__}"></small>
+        </div>
+    </th:block>
+  </form>
+</body>
+</html>
