@@ -1,9 +1,6 @@
 package com.coderscampus.flightreservationapp.domain.paging;
 
-/**
- * represents an item of the pagination, like the page numbers
- *
- */
+/* Represents an item of the pagination, like the page numbers */
 public class PageItem {
 
     private PageItemType pageItemType;

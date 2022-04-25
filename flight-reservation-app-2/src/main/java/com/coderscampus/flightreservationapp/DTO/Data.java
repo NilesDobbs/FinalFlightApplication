@@ -75,7 +75,7 @@ public class Data {
 		flightD.setDepartureAirport(this.getDeparture().getAirportDeparture());
 		flightD.setArrivalAirport(this.getArrival().getAirportArrival());
 
-		//as the dates and times are String in the entity i didn't see the need to parse to type Date
+		//As the dates and times are String in the entity 'i', there's no need to parse to type Date.
 		flightD.setDepartureTime(
 				this.getDeparture().getScheduledD().split("T")[1]);
 		flightD.setArrivalTime(
@@ -90,7 +90,7 @@ public class Data {
 		flightD.setAirlineFlightStatus(this.flightStatus);
 		flightD.setDateOfFlight(this.flightDate);
 
-		//Concat number-iata-icao to be unique in order to update if exists in database
+		//Concat number-iata-icao to be unique in order to update if it exists in the database
 		flightD.setFlightUniqueKey(this.getFlight().getFlightUniqueKey());
 		flightD.setFlightNumberInfo(this.getFlight().getNumberF());
 		return flightD;

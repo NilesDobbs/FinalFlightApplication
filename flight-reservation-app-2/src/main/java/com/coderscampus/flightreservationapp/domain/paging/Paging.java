@@ -3,10 +3,8 @@ package com.coderscampus.flightreservationapp.domain.paging;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * helper class that does the calculations and generates everything needed for paging
- *
- */
+/* Helper class that does the calculations and generates everything needed for paging */
+
 public class Paging {
 
     private static final int PAGINATION_STEP = 3;
